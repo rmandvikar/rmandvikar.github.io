@@ -401,28 +401,37 @@ Game2048Console.prototype.GetExponentBase2 = function (n) {
 }
 
 Game2048Console.prototype.SaveBestScore = function () {
-    var scoreNow = this.game.score;
-    if (localStorage['2048.state']) {
-        var state = JSON.parse(localStorage['2048.state']);
-    }
-    state = state || { best: 0 };
-    if (scoreNow > state.best) {
-        localStorage['2048.state'] = JSON.stringify({ best: scoreNow });
+    if (localStorage) {
+        var score = this.game.score;
+        if (localStorage['2048.state']) {
+            var state = JSON.parse(localStorage['2048.state']);
+        }
+        state = state || { best: 0 };
+        if (score > state.best) {
+            localStorage['2048.state'] = JSON.stringify({ best: score });
+        }
     }
 }
 
 Game2048Console.prototype.LoadBestScore = function () {
-    var best = 0;
-    if (localStorage['2048.state']) {
-        var state = JSON.parse(localStorage['2048.state']);
-        if (state) {
-            best = state.best;
+    if (localStorage) {
+        var best = 0;
+        if (localStorage['2048.state']) {
+            var state = JSON.parse(localStorage['2048.state']);
+            if (state) {
+                best = state.best;
+            }
+        }
+        if (best > 0) {
+            $('#best').show();
+            $('#best span').text(best).stop(true).hide().fadeIn();
         }
     }
-    if (best > 0) {
-        $('#best span').text(best).stop(true).hide().fadeIn();
-    } else {
-        $('#best').hide();
+}
+
+Game2048Console.prototype.ClearState = function () {
+    if (localStorage) {
+        localStorage.removeItem('2048.state');
     }
 }
 
@@ -633,9 +642,7 @@ function ehandler(event) {
 
 window.onbeforeunload = function () {
     console.log('onbeforeunload');
-    if (localStorage) {
-        gameconsole.SaveBestScore();
-    }
+    gameconsole.SaveBestScore();
 }
 
 var continueplay = true;
