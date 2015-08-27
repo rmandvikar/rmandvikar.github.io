@@ -25,12 +25,13 @@ Random.prototype.next = function(limit) {
 var random = new Random();
 var msv = ['foo', 'bar', 'baz', 'qux', 'norf'];
 var count = 0;
-var ishack = false;
+var isbiased = false;
+var id = 0;
 
 function getItem(item) {
     return '<p class="element rounded">' +
-        '&nbsp;<span contenteditable="true">' + (item || msv[random.next(msv.length)]) + '</span>&nbsp;' +
         '<a href="#" class="cross circle" tabindex="-1">x</a>' +
+        '<input type="text" class="rounded" value="' + (item || msv[random.next(msv.length)]) + '" id="' + id++ + '">' +
         '</p>';
 }
 
@@ -38,13 +39,19 @@ function showCount() {
     $('.feedback span:eq(-1)').stop(true).text(count).hide().fadeIn(1000).fadeOut(1000);
 }
 
-// http://stackoverflow.com/questions/6139107/programatically-select-text-in-a-contenteditable-html-element
-function selectElementContents(el) {
-    var range = document.createRange();
-    range.selectNodeContents(el);
-    var sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
+window.onbeforeunload = function () {
+    console.log('onbeforeunload');
+    saveItems();
+}
+
+function saveItems() {
+    if (localStorage) {
+        var items = [];
+        $('.elements p.element input').each(function() {
+            items.push($(this).val());
+        });
+        localStorage['randompick.items'] = JSON.stringify(items);
+    }
 }
 
 $(document).ready(function() {
@@ -61,9 +68,9 @@ $(document).ready(function() {
         e.preventDefault();
         var elementCount = $('.elements p.element').length;
         var winnerIndex = random.next(elementCount);
-        if (ishack) {
+        if (isbiased) {
             $('.elements p.element').each(function(index) {
-                if ($(this).find('span').text().toLowerCase() == "hippy") {
+                if ($(this).find('input').val().toLowerCase() == "hippy") {
                     winnerIndex = index;
                     return false;
                 }
@@ -71,11 +78,14 @@ $(document).ready(function() {
         }
         console.log(winnerIndex + " /" + "0.." + (elementCount - 1));
         $('.elements p.element').removeClass('transition tilecolor2048').each(function(e) {
-            $(this).find('span').removeClass('winner');
+            $(this).find('input').removeClass('transition winner tilecolor2048');
+        });
+        $('.elements p.element').eq(winnerIndex).each(function(e) {
+            $(this).find('input').addClass('winner');
         });
         setTimeout(function() {
             $('.elements p.element').eq(winnerIndex).addClass('transition tilecolor2048').each(function(e) {
-                $(this).find('span').addClass('winner');
+                $(this).find('input').addClass('transition tilecolor2048');
             });
         }, 0);
         return false;
@@ -89,34 +99,48 @@ $(document).ready(function() {
         return false;
     });
     // create elements
-    for (var i = 0; i < msv.length; i++) {
+    var items = msv;
+    if (localStorage) {
+        if (localStorage['randompick.items']) {
+            var lsitems = JSON.parse(localStorage['randompick.items']);
+            if (lsitems != null && lsitems.length > 0) {
+                items = lsitems;
+            }
+        }
+        items = items || msv;
+    }
+    for (var i = 0; i < items.length; i++) {
         (function(index) {
             setTimeout(function() {
-                $('.elements').append(getItem(msv[index]));
+                $('.elements').append(getItem(items[index]));
             }, (index+1) * 111);
         })(i);
         count++;
     }
-    // avoid enter key in editable
-    $('.elements').on('keypress', '[contenteditable=true]', function(e) {
-        if (e.keyCode == 13) {
-            e.preventDefault();
-            return false;
-        }
+    $('.elements').on('focus tap', 'input', function(e) {
+        $(this).select();
     });
-    // select text on click
-    $('.elements').on('focus tap', '[contenteditable=true]', function(e) {
-        selectElementContents($(this)[0]);
+    // keep tab keypress rotating
+    $(".elements").on('keydown', 'input', function(e) { 
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == 9) {
+            if ($(this).attr('id') == $('.elements p.element input').last().attr('id')) {
+                e.preventDefault();
+                $('.elements p.element input').first().select();
+                return false;
+            }
+        }
+        return true;
     });
     // show
     $('div.pick').fadeIn(1000);
     setTimeout(function() {
         showCount();
     }, 1000);
-    // ishack
+    // bias hack
     $('.footer').click(function() {
-        ishack = !ishack;
-        console.log(ishack);
+        isbiased = !isbiased;
+        console.log(isbiased);
         $('.footer a').toggleClass('horns nohorns');
     });
 });
