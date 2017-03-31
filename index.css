@@ -103,6 +103,11 @@ body {
     border-radius: 10px 10px 10px 10px; /* rounds corners for other browsers */
 }
 
+.glasses {
+    -moz-border-radius: 200px 200px 200px 200px; /* circle for firefox */
+    border-radius: 200px 200px 200px 200px; /* circle for other browsers */
+}
+
 .center {
     text-align: center;
 }
