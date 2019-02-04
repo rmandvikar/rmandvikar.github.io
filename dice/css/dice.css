@@ -1,0 +1,57 @@
+#grid span {
+    display: block;
+    text-align: center;
+    font-family: "Roboto Condensed", "Courier New";
+    font-size: 2000%;
+}
+
+#grid {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#instructions {
+    margin: 100px 0px 0px 0px;
+}
+
+#footer {
+    margin-top: 50px;
+    clear: both;
+}
+
+#wrapper {
+    width: 500px;
+    margin: 0 auto;
+}
+
+body {
+    margin: 0 auto;
+    font-family: "Helvetica";
+    background: ghostwhite;
+}
+
+.rounded {
+    -moz-border-radius: 10px 10px 10px 10px; /* rounds corners for firefox */
+    border-radius: 10px 10px 10px 10px; /* rounds corners for other browsers */
+}
+
+.center {
+    text-align: center;
+}
+
+.ui-icon-loading {
+    background: url(http://code.jquery.com/mobile/1.1.0-rc.1/images/ajax-loader.png);
+    background-size: 46px 46px;
+    width:46px;
+    height:46px;
+    -webkit-transform: rotate(360deg);
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+@-webkit-keyframes spin {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
