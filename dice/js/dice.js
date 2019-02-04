@@ -21,6 +21,18 @@ Random.prototype.Next = function (limit) {
 
 //}
 
+//{ jquery
+
+$.fn.addClassTemporarily = function (className, time) {
+    var $this = this.addClass(className);
+    setTimeout(function () {
+        $this.removeClass(className);
+    }, time)
+    return this;
+};
+
+//}
+
 //{ GameConsole
 
 var diceNumbers = [ '⚀', '⚁', '⚂', '⚃', '⚄', '⚅' ]
@@ -33,6 +45,7 @@ GameConsole.prototype.Roll = function () {
     var number = diceNumbers[rng.Next(diceNumbers.length)];
     var $face = $('#grid span');
     $face.text(number)
+        .addClassTemporarily("wobble", 1000)
         .stop(true).hide().stop(true).fadeIn();
 }
 
