@@ -1,0 +1,57 @@
+.absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  bottom: 0;
+  right: 10%;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+body > div {
+    height: 300px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 200%;
+}
+
+div {
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+div a {
+    margin-right: 10%;
+}
+div a:last-child {
+    margin-right: 0;
+}
+
+body {
+    margin: 0 auto;
+    font-family: "Roboto Condensed";
+    background: ghostwhite;
+}
+
+.rounded {
+    -moz-border-radius: 10px 10px 10px 10px; /* rounds corners for firefox */
+    border-radius: 10px 10px 10px 10px; /* rounds corners for other browsers */
+}
+
+.glasses {
+    -moz-border-radius: 200px 200px 200px 200px; /* circle for firefox */
+    border-radius: 200px 200px 200px 200px; /* circle for other browsers */
+}
+
+.center {
+    text-align: center;
+}
