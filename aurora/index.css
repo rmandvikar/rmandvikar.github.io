@@ -1,0 +1,147 @@
+.absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+div {
+    line-height: 200%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1200%;
+}
+
+.text {
+    margin-top: 2%;
+    font-family: monospace;
+    text-align: center;
+    font-size: 75%;
+    font-weight: normal;
+}
+
+img {
+    height: 450px;
+    width: 450px;
+}
+
+.biggie {
+    line-height: 300%;
+    font-size: 800%;
+}
+
+.trans {
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    /* IE 5-7 */
+    filter: alpha(opacity=50);
+    /* Netscape */
+    -moz-opacity: 0.5;
+    /* Safari 1.x */
+    -khtml-opacity: 0.5;
+    /* Good browsers */
+    opacity: 0.5;
+}
+
+div {
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+body {
+    margin: 0 auto;
+    font-family: "Roboto Condensed";
+    background: ghostwhite;
+}
+
+/* http://gabrielecirulli.github.io/2048/style/main.css */
+.tilecolor2 {
+    color: #776e65;
+    background: #eee4da;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
+}
+
+.tilecolor4 {
+    color: #776e65;
+    background: #ede0c8;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
+}
+
+.tilecolor8 {
+    color: #f9f6f2;
+    background: #f2b179;
+}
+
+.tilecolor16 {
+    color: #f9f6f2;
+    background: #f59563;
+}
+
+.tilecolor32 {
+    color: #f9f6f2;
+    background: #f67c5f;
+}
+
+.tilecolor64 {
+    color: #f9f6f2;
+    background: #f65e3b;
+}
+
+.tilecolor128 {
+    color: #f9f6f2;
+    background: #edcf72;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
+}
+
+.tilecolor256 {
+    color: #f9f6f2;
+    background: #edcc61;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
+}
+
+.tilecolor512 {
+    color: #f9f6f2;
+    background: #edc850;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+}
+
+.tilecolor1024 {
+    color: #f9f6f2;
+    background: #edc53f;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
+}
+
+.tilecolor2048 {
+    color: #f9f6f2;
+    background: #edc22e;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+}
+
+.rounded {
+    -moz-border-radius: 10px 10px 10px 10px; /* rounds corners for firefox */
+    border-radius: 10px 10px 10px 10px; /* rounds corners for other browsers */
+}
+
+.glasses {
+    -moz-border-radius: 200px 200px 200px 200px; /* circle for firefox */
+    border-radius: 200px 200px 200px 200px; /* circle for other browsers */
+}
+
+.center {
+    text-align: center;
+}
