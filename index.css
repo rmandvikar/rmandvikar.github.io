@@ -11,9 +11,12 @@
   transform: translate(-50%, -50%);
 }
 
-div {
+.square {
     height: 400px;
     width: 400px;
+}
+
+div {
     border: #C0C0C0 solid 1px; /* cannot put % */
     background: whitesmoke;
     line-height: 200%;
