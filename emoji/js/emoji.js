@@ -41,7 +41,8 @@ function GameConsole() {
 }
 
 GameConsole.prototype.Roll = function () {
-    const emojiRegex = /\p{Emoji}/u;
+    // const emojiRegex = /\p{Emoji}/u;
+    const emojiRegex = /\p{Extended_Pictographic}/ug;
     var emoji = decodeURI(window.location.hash.split('#').filter(x => x).slice(-1).pop());
     if (emojiRegex.test(emoji)) {
         var $face = $('#grid span');
